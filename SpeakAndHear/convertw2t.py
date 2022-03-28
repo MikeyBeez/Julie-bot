@@ -15,7 +15,7 @@ import subprocess
 
 # function to convert wave file to text using vosk
 
-def convertToText():
+def convertw2t():
 # convert the wave file to text
 # create a speech synthesizer
     vo = vosk.Model("model/en-us/en-us")
