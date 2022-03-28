@@ -19,7 +19,7 @@ def convertw2t():
 # convert the wave file to text
 # create a speech synthesizer
     vo = vosk.Model("model/en-us/en-us")
-    text = vo.Text("wb.wav")
+    text = vo.Text("speech.wav")
     return text
 
         
