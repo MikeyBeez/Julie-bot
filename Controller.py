@@ -22,9 +22,9 @@ def __main__():
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
     subprocess.call(["aplay", "speech.wav"])
-
-    # text = convertw2t.convertw2t()
-    # print(text)
+    text = convertw2t.convertw2t("speech.wav")
+    print(text)
+    # speak.speak(text)
 
 
 if __name__ == "__main__":

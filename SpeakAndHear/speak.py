@@ -1,14 +1,7 @@
-# use vosk and gTTS to speak and hear
-# Make sure that you have installed pyaudio, vosk, and gTTS.
-# conda install pyaudio
-# pip3 install vosk
-# pip3 install gtts
-
-import os
 import gtts
 import pyaudio
 import subprocess
-
+# import os
 
 def speak(text):
 # convert text to speech

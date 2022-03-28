@@ -1,18 +1,11 @@
-# use vosk and gTTS to speak and hear
-# Make sure that you have installed pyaudio, vosk, and gTTS.
-# conda install pyaudio
-# pip3 install vosk
-# pip3 install gtts
-
-import os
-import vosk
-import gtts
-import time
 import pyaudio
 import wave
 import sys
 import subprocess
-
+# import os
+# import time
+# import gtts
+# import vosk
 
 def listen():
     # listen for speech
