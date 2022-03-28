@@ -21,21 +21,12 @@ def __main__():
         ["sox", "reversed.wav", "silenced.wav", "silence", "1", "0.1", "1%", "reverse"]
     )
     subprocess.call(["aplay", "silenced.wav"])
+    # use sox speech.profile to remove noise from silenced.wav
     subprocess.call(
-        [
-            "sox",
-            "-n",
-            "silenced.wav",
-            "trim",
-            "01",
-            "noisprof",
-            "|",
-            "aplay",
-            "better.wav",
-            "noisered",
-        ]
+        ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
-    subprocess.call(["aplay", "silenced.wav"])
+    subprocess.call(["aplay", "speech.wav"])
+
     # text = convertw2t.convertw2t()
     # print(text)
 
