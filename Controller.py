@@ -12,7 +12,6 @@ from SpeakAndHear import convertw2t
 def __main__():
     speak.speak("What is your name?")
     listen.listen()
-    subprocess.call(["aplay", "listen.wav"])
     subprocess.call(
         ["sox", "listen.wav", "reversed.wav", "silence", "1", "0.1", "1%", "reverse"]
     )
