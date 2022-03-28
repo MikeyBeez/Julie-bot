@@ -13,7 +13,7 @@ def __main__():
     speak.speak("What is your name?")
     listen.listen()
     subprocess.call(
-        ["sox", "speak.wav", "reversed.wav", "silence", "1", "0.1", "1%", "reverse"]
+        ["sox", "listen.wav", "reversed.wav", "silence", "1", "0.1", "1%", "reverse"]
     )
     subprocess.call(
         ["sox", "reversed.wav", "silenced.wav", "silence", "1", "0.1", "1%", "reverse"]
