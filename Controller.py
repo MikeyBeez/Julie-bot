@@ -1,19 +1,19 @@
 #!/bin/env python3
+from re import A
 import time
-import SpeakAndHear
+from SpeakAndHear import 
+
 
 # use SpeakAndHear modules to speak text, listen for speech, and convert speech to text.
 
 
-def main():
-
-    SpeakAndHear.speak("Hello, world!")
-    time.sleep(3)
+def __main__():
     SpeakAndHear.speak("What is your name?")
     time.sleep(3)
-    SpeakAndHear.listen()
-    text = SpeakAndHear.C
+    Tools.listen()
+    text = Tools.C
     print(text)
 
 
-main()
+if __name__ == "__main__":
+    __main__()
