@@ -1,4 +1,6 @@
 from vosk import Model, KaldiRecognizer, SetLogLevel
+import asyncio
+import websockets
 import sys
 import os
 import wave
@@ -7,36 +9,28 @@ import subprocess
 
 def convertw2t(file):
     SetLogLevel(0)
-    model = Model("model")
-    wf = wave.open(file, "rb")
-    rec = KaldiRecognizer(model, wf.getframerate())
-    sample_rate = wf.getframerate()
 
-    process = subprocess.Popen(
-        [
-            "ffmpeg",
-            "-loglevel",
-            "quiet",
-            "-i",
-            "speech.wav",
-            "ar",
-            str(sample_rate),
-            "-ac",
-            "1",
-            "-f",
-            "s16le",
-            "-",
-        ],
-        stdout=subprocess.PIPE,
-    )
 
-    while True:
-        data = process.stdout.read(4000)
-        if len(data) == 0:
-            break
-        if rec.AcceptWaveform(data):
-            print(rec.Result())
-        else:
-            print(rec.PartialResult())
-    print(rec.FinalResult())
-    return rec.FinalResult()
+async def run_test(uri):
+    async with websockets.connect(uri) as websocket:
+        filetoopen = "speech.wav"
+        wf = wave.open(filetoopen, "rb")
+        await websocket.send(
+            '{ "config" : { "sample_rate" : %d } }' % (wf.getframerate())
+        )
+        buffer_size = int(wf.getframerate() * 0.2)  # 0.2 seconds of audio
+        while True:
+            data = wf.readframes(buffer_size)
+
+            if len(data) == 0:
+                break
+
+            await websocket.send(data)
+            print(await websocket.recv())
+
+        await websocket.send('{"eof" : 1}')
+        print("wsr")
+        print(await websocket.recv())
+
+
+asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))

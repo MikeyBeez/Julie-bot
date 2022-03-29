@@ -21,7 +21,7 @@ def __main__():
     subprocess.call(
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
-    subprocess.call(["aplay", "speech.wav"])
+    # subprocess.call(["aplay", "speech.wav"])
     text = convertw2t.convertw2t("speech.wav")
     print(text)
     # speak.speak(text)

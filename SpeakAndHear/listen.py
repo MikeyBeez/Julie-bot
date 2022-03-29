@@ -2,13 +2,8 @@ import pyaudio
 import wave
 import sys
 import subprocess
-# import os
-# import time
-# import gtts
-# import vosk
 
 def listen():
-    # listen for speech
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
@@ -38,11 +33,11 @@ def listen():
     stream.close()
     p.terminate()
 
-    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(p.get_sample_size(FORMAT))
-    wf.setframerate(RATE)
-    wf.writeframes(b''.join(frames))
-    wf.close()
+    # wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    # wf.setnchannels(CHANNELS)
+    # wf.setsampwidth(p.get_sample_size(FORMAT))
+    # wf.setframerate(RATE)
+    # wf.writeframes(b''.join(frames))
+    # wf.close()
 
         
