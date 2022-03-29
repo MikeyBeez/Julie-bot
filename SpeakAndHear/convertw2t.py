@@ -1,18 +1,13 @@
-from vosk import Model, KaldiRecognizer, SetLogLevel
 import asyncio
+from re import A
 import websockets
 import sys
-import os
 import wave
-import subprocess
-
-
-def convertw2t(file):
-    SetLogLevel(0)
 
 
 async def run_test(uri):
     async with websockets.connect(uri) as websocket:
+
         filetoopen = "speech.wav"
         wf = wave.open(filetoopen, "rb")
         await websocket.send(
@@ -33,4 +28,5 @@ async def run_test(uri):
         print(await websocket.recv())
 
 
-asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))
+def convertw2t(file):
+    asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))
