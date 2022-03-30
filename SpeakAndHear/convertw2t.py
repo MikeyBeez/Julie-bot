@@ -6,7 +6,7 @@ import wave
 
 
 async def run_test(uri):
-    async with websockets.connect(uri) as websocket:
+    async with websockets.connect(uri) as websocket:  # type: ignore
 
         filetoopen = "speech.wav"
         wf = wave.open(filetoopen, "rb")
@@ -24,9 +24,8 @@ async def run_test(uri):
             print(await websocket.recv())
 
         await websocket.send('{"eof" : 1}')
-        print("wsr")
-        print(await websocket.recv())
+        return print(await websocket.recv())
 
 
 def convertw2t(file):
-    asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))
+    return asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))
