@@ -21,8 +21,11 @@ def __main__():
     text = convertw2t.convertw2t("speech.wave")
     print("final text")
     print(text)
-    subprocess.call(["rm", "*.wav"])
-    # speak.speak(text)
+    subprocess.call(["rm", "listen.wav"])
+    subprocess.call(["rm", "reversed.wav"])
+    subprocess.call(["rm", "silenced.wav"])
+    subprocess.call(["rm", "speech.wav.wav"])
+    subprocess.call(["rm", "speak.mp3"])
 
 
 if __name__ == "__main__":
