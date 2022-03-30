@@ -20,9 +20,9 @@ def __main__():
     subprocess.call(
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
-    text = convert.convert("speech.wave")
-    print("The final text is: ")
-    print(text)
+    result = convert.convert("speech.wave")
+    # print("The final text is: ")
+    # print(result)
     clean.clean()
 
 

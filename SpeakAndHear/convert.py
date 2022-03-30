@@ -3,6 +3,9 @@ from re import A
 import websockets
 import sys
 import wave
+import json
+
+global rcvstr
 
 
 async def run_test(uri):
@@ -13,7 +16,7 @@ async def run_test(uri):
         await websocket.send(
             '{ "config" : { "sample_rate" : %d } }' % (wf.getframerate())
         )
-        buffer_size = int(wf.getframerate() * 0.1)  # 0.2 seconds of audio
+        buffer_size = int(wf.getframerate() * 0.2)  # 0.2 seconds of audio
         while True:
             data = wf.readframes(buffer_size)
 
@@ -21,13 +24,15 @@ async def run_test(uri):
                 break
 
             await websocket.send(data)
-            rcvstr = print(await websocket.recv())
-            print("rcvstr")
+            await websocket.recv()
 
         await websocket.send('{"eof" : 1}')
-        rcvstr2 = print(await websocket.recv())
-        return rcvstr2
-        print("rcvstr2")
+        dumped = await websocket.recv()
+        print(dumped)
+        mydict = json.loads(dumped)
+        print(mydict["text"])
+        # result = mydict["text"]
+        # return result
 
 
 def convert(file):
