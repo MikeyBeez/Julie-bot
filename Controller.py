@@ -6,9 +6,6 @@ from SpeakAndHear import listen
 from SpeakAndHear import convertw2t
 
 
-# use SpeakAndHear modules to speak text, listen for speech, and convert speech to text.
-
-
 def __main__():
     speak.speak("What is your name?")
     listen.listen()
@@ -21,8 +18,8 @@ def __main__():
     subprocess.call(
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
-    # subprocess.call(["aplay", "speech.wav"])
-    text = convertw2t.convertw2t("speech.wav")
+    text = convertw2t.convertw2t("speech.wave")
+    print("final text")
     print(text)
     # speak.speak(text)
 
