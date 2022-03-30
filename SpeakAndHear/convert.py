@@ -13,7 +13,7 @@ async def run_test(uri):
         await websocket.send(
             '{ "config" : { "sample_rate" : %d } }' % (wf.getframerate())
         )
-        buffer_size = int(wf.getframerate() * 0.2)  # 0.2 seconds of audio
+        buffer_size = int(wf.getframerate() * 0.1)  # 0.2 seconds of audio
         while True:
             data = wf.readframes(buffer_size)
 
@@ -21,11 +21,14 @@ async def run_test(uri):
                 break
 
             await websocket.send(data)
-            print(await websocket.recv())
+            rcvstr = print(await websocket.recv())
+            print("rcvstr")
 
         await websocket.send('{"eof" : 1}')
-        return print(await websocket.recv())
+        rcvstr2 = print(await websocket.recv())
+        return rcvstr2
+        print("rcvstr2")
 
 
 def convert(file):
-    return asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))
+    asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))

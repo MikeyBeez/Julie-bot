@@ -21,7 +21,7 @@ def __main__():
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
     text = convert.convert("speech.wave")
-    print("final text")
+    print("The final text is: ")
     print(text)
     clean.clean()
 
