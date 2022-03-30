@@ -21,6 +21,7 @@ def __main__():
     text = convertw2t.convertw2t("speech.wave")
     print("final text")
     print(text)
+    subprocess.call(["rm", "*.wav"])
     # speak.speak(text)
 
 
