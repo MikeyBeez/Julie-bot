@@ -27,5 +27,5 @@ async def run_test(uri):
         return print(await websocket.recv())
 
 
-def convertw2t(file):
+def convert(file):
     return asyncio.get_event_loop().run_until_complete(run_test("ws://localhost:2700"))

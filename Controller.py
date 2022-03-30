@@ -1,9 +1,11 @@
 #!/bin/env python3
+from json import tool
 import subprocess
 import time
 from SpeakAndHear import speak
 from SpeakAndHear import listen
-from SpeakAndHear import convertw2t
+from SpeakAndHear import convert
+from Tools import clean
 
 
 def __main__():
@@ -18,14 +20,10 @@ def __main__():
     subprocess.call(
         ["sox", "silenced.wav", "speech.wav", "noisered", "speech.noiseprofile", "0.3"]
     )
-    text = convertw2t.convertw2t("speech.wave")
+    text = convert.convert("speech.wave")
     print("final text")
     print(text)
-    subprocess.call(["rm", "listen.wav"])
-    subprocess.call(["rm", "reversed.wav"])
-    subprocess.call(["rm", "silenced.wav"])
-    subprocess.call(["rm", "speech.wav.wav"])
-    subprocess.call(["rm", "speak.mp3"])
+    clean.clean()
 
 
 if __name__ == "__main__":
