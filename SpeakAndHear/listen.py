@@ -3,12 +3,12 @@ import wave
 import sys
 import subprocess
 
-def listen():
+def listen(seconds):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
     RATE = 16000
-    RECORD_SECONDS = 3
+    RECORD_SECONDS = seconds
     WAVE_OUTPUT_FILENAME = "listen.wav"
 
     p = pyaudio.PyAudio()

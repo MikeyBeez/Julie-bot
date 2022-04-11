@@ -10,7 +10,7 @@ from Tools import clean
 
 def __main__():
     speak.speak("What is your name?")
-    listen.listen()
+    listen.listen(3)
     subprocess.call(
         ["sox", "listen.wav", "reversed.wav", "silence", "1", "0.1", "1%", "reverse"]
     )
